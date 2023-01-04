@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Head from "next/head";
 import useSound from "use-sound";
+import localFont from "@next/font/local";
 
 import styles from "../styles/Home.module.css";
 import clickSound from "../assets/click-sound.mp3";
@@ -12,6 +13,8 @@ const trueOperators = {
   X: "*",
   "÷": "/",
 };
+
+const caculatorFont = localFont({ src: "../assets/fonts/Calculator.ttf" });
 
 const Button = ({ className, text, onClick = () => {} }) => {
   return (
@@ -139,7 +142,7 @@ export default function Home() {
             <div className="stripe"></div>
             <div className="stripe"></div>
           </div>
-          <div className={`result ${error && "result--error"}`}>
+          <div className={`result ${error && "result--error"} ${caculatorFont.className}`}>
             <div className="result--inner">{input}</div>
           </div>
           <div className="button-container">
