@@ -80,6 +80,7 @@ body .avatron .result.result--error {
 body .avatron .result .result--inner {
   font-size: 1.9rem;
   font-weight: bold;
+  overflow-y: auto;
 }
 
 
