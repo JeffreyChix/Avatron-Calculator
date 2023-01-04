@@ -3,7 +3,7 @@
 
 @font-face {
   font-family: "Calculator";
-  src: url("../assets/fonts/Calculator.ttf") format("opentype");
+  src: url("../public/fonts/Calculator.ttf") format("opentype");
   font-style: normal;
 }
 
