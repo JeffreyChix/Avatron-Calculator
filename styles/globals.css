@@ -70,7 +70,7 @@ body .avatron .result {
   background: linear-gradient(#010101 74%, #1A1A1A 78%) 30% 100%/100% 100%;
   background-repeat: no-repeat;
   color: #e69100;
-  font-family: Calculator, sans-serif;
+  font-family: Calculator, sans-serif !important;
   letter-spacing: 7px;
   text-align: right;
   display: flex;
