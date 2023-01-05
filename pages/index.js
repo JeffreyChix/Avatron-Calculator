@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Head from "next/head";
 import useSound from "use-sound";
+// import { NumericFormat } from "react-number-format";
 import localFont from "@next/font/local";
 
 import styles from "../styles/Home.module.css";
@@ -14,7 +15,7 @@ const trueOperators = {
   "÷": "/",
 };
 
-const caculatorFont = localFont({ src: "../assets/fonts/Calculator.ttf" });
+const calculatorFont = localFont({ src: "../assets/fonts/Calculator.ttf" });
 
 const Button = ({ className, text, onClick = () => {} }) => {
   return (
@@ -60,7 +61,7 @@ export default function Home() {
 
   const injectTrueOperators = (input) => {
     const newInput = [];
-    const sInput = input.toString().replaceAll(",", ""); // input must always be in string format with no commas
+    const sInput = input.toString();
     for (let i = 0; i < sInput.length; i++) {
       let char = sInput[i];
       newInput.push(trueOperators[char] ?? char);
@@ -87,9 +88,7 @@ export default function Home() {
           case "=":
             const inputWithValidOperators = injectTrueOperators(input);
             if (lastCharacter === " ") break;
-            const result = eval(inputWithValidOperators).toLocaleString(
-              "en-US"
-            );
+            const result = eval(inputWithValidOperators);
             setInput(result);
             setIsEvaluated(true);
             break;
@@ -107,6 +106,8 @@ export default function Home() {
 
       setIsEvaluated(false);
       if (text === ".") setDotCount((prev) => prev + 1);
+
+      if (input === "" && ["X", "+", "÷"].includes(text)) return;
 
       if (lastCharacter === " " && operators.includes(text)) return; // only one operator at a time. Eg: 2 + + 3 is not allowed
 
@@ -142,8 +143,12 @@ export default function Home() {
             <div className="stripe"></div>
             <div className="stripe"></div>
           </div>
-          <div className={`result ${error && "result--error"} ${caculatorFont.className}`}>
-            <div className="result--inner">{input}</div>
+          <div
+            className={`result ${error && "result--error"} ${
+              calculatorFont.className
+            }`}
+          >
+            <div className="result--inner">{input.toLocaleString("en-US")}</div>
           </div>
           <div className="button-container">
             <div className="logo-container">
